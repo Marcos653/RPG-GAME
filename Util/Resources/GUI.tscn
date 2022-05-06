@@ -1,0 +1,297 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Textures/UI/TextWindow/WindowSkin.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/MorrisRoman-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Dialog.gd" type="Script" id=3]
+[ext_resource path="res://Textures/UI/TextWindow/Arrow.png" type="Texture" id=4]
+[ext_resource path="res://Textures/UI/Stat/BarColour.png" type="Texture" id=5]
+[ext_resource path="res://Textures/UI/Stat/BarBorder.png" type="Texture" id=6]
+[ext_resource path="res://Textures/UI/Stat/BarBack.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/HealthBar.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/ManaBar.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/ExpBar.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=12]
+[ext_resource path="res://Util/Resources/QuestLog.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Util/Resources/Inventory.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Util/Resources/Settings.tscn" type="PackedScene" id=16]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "ArrowBounce"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 359.83, 505.815 ), Vector2( 359.83, 513.815 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 9
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="GUI" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 12 )
+
+[node name="Dialog" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Dialog"]
+margin_top = 356.905
+margin_right = 720.0
+margin_bottom = 537.905
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="RichTextLabel" parent="Dialog"]
+margin_left = 33.0
+margin_top = 383.0
+margin_right = 688.0
+margin_bottom = 511.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "asdfsgffdgsfdgs"
+text = "asdfsgffdgsfdgs"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterTimer" type="Timer" parent="Dialog"]
+wait_time = 0.04
+autostart = true
+
+[node name="Arrow" type="Sprite" parent="Dialog"]
+visible = false
+position = Vector2( 359.83, 509.308 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dialog"]
+autoplay = "ArrowBounce"
+anims/ArrowBounce = SubResource( 2 )
+
+[node name="Health" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarUnder" type="TextureProgress" parent="Health"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 20.0
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 5 )
+tint_progress = Color( 0.431373, 0, 0, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 20.0
+value = 100.0
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_progress = Color( 0.137255, 0.427451, 0.00392157, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP" type="Label" parent="Health"]
+margin_left = 71.0
+margin_top = 8.0
+margin_right = 97.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "HP/HP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Health"]
+
+[node name="Mana" type="Control" parent="."]
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 58.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaBarUnder" type="TextureProgress" parent="Mana"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 20.0
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 5 )
+tint_progress = Color( 0.431373, 0, 0, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaBar" type="TextureProgress" parent="Mana"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 20.0
+value = 100.0
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_progress = Color( 0, 0.337255, 0.584314, 1 )
+nine_patch_stretch = true
+
+[node name="MP" type="Label" parent="Mana"]
+margin_left = 71.0
+margin_top = 8.0
+margin_right = 101.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 3 )
+text = "MP/MP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Mana"]
+
+[node name="Exp" type="Control" parent="."]
+margin_top = 36.0
+margin_right = 40.0
+margin_bottom = 76.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExpBar" type="TextureProgress" parent="Exp"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 164.0
+margin_bottom = 20.0
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_progress = Color( 0.898039, 0.717647, 0.0156863, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP" type="Label" parent="Exp"]
+margin_left = 78.5755
+margin_top = 8.0
+margin_right = 91.5755
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 3 )
+text = "XP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Control" parent="."]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+margin_right = 721.0
+margin_bottom = 543.0
+color = Color( 0.0705882, 0.0705882, 0.0980392, 0.392157 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 243.537
+margin_top = 43.9382
+margin_right = 443.537
+margin_bottom = 303.938
+rect_min_size = Vector2( 200, 300 )
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="Pause/VBoxContainer"]
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 80.0
+text = "Resume"
+
+[node name="Quests" type="Button" parent="Pause/VBoxContainer"]
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 120.0
+text = "Quests"
+
+[node name="Inventory" type="Button" parent="Pause/VBoxContainer"]
+margin_top = 140.0
+margin_right = 200.0
+margin_bottom = 160.0
+text = "Inventory"
+
+[node name="Options" type="Button" parent="Pause/VBoxContainer"]
+margin_top = 180.0
+margin_right = 200.0
+margin_bottom = 200.0
+text = "Options"
+
+[node name="Exit" type="Button" parent="Pause/VBoxContainer"]
+margin_top = 220.0
+margin_right = 200.0
+margin_bottom = 240.0
+text = "Exit"
+
+[node name="QuestLog" parent="." instance=ExtResource( 13 )]
+visible = false
+
+[node name="Inventory" parent="." instance=ExtResource( 14 )]
+visible = false
+
+[node name="Settings" parent="." instance=ExtResource( 16 )]
+visible = false
+[connection signal="timeout" from="Dialog/CharacterTimer" to="Dialog" method="_on_CharacterTimer_timeout"]
+[connection signal="pressed" from="Pause/VBoxContainer/Resume" to="Pause" method="_on_Resume_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Quests" to="Pause" method="_on_Quests_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Inventory" to="Pause" method="_on_Inventory_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Options" to="Pause" method="_on_Options_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/Exit" to="Pause" method="_on_Exit_pressed"]

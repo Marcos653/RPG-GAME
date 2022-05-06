@@ -1,0 +1,188 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/MorrisRoman-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 27
+font_data = ExtResource( 1 )
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.629944
+margin_right = 0.629944
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Resolution_Choice = NodePath("TabContainer/Display/ResolutionOptions")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 129.964
+margin_top = 98.7194
+margin_right = 607.964
+margin_bottom = 444.719
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Master" type="Label" parent="TabContainer/Audio"]
+margin_left = 32.8434
+margin_top = 36.0217
+margin_right = 72.8434
+margin_bottom = 50.0217
+custom_fonts/font = SubResource( 1 )
+text = "Master Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="Label" parent="TabContainer/Audio"]
+margin_left = 32.8434
+margin_top = 73.0217
+margin_right = 163.843
+margin_bottom = 97.0217
+custom_fonts/font = SubResource( 1 )
+text = "SFX Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Label" parent="TabContainer/Audio"]
+margin_left = 32.8434
+margin_top = 112.022
+margin_right = 175.843
+margin_bottom = 136.022
+custom_fonts/font = SubResource( 1 )
+text = "Music Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolume" type="HSlider" parent="TabContainer/Audio"]
+margin_left = 250.0
+margin_top = 41.0
+margin_right = 447.0
+margin_bottom = 57.0
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFXVolume" type="HSlider" parent="TabContainer/Audio"]
+margin_left = 250.0
+margin_top = 78.0
+margin_right = 447.0
+margin_bottom = 94.0
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolume" type="HSlider" parent="TabContainer/Audio"]
+margin_left = 250.0
+margin_top = 120.0
+margin_right = 447.0
+margin_bottom = 136.0
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Display" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Fullscreen" type="Label" parent="TabContainer/Display"]
+margin_left = 32.8434
+margin_top = 36.0217
+margin_right = 185.843
+margin_bottom = 60.0217
+custom_fonts/font = SubResource( 1 )
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resolution" type="Label" parent="TabContainer/Display"]
+margin_left = 33.0
+margin_top = 73.0
+margin_right = 164.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 1 )
+text = "Resolution"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowCPUMode" type="Label" parent="TabContainer/Display"]
+margin_left = 33.0
+margin_top = 126.0
+margin_right = 164.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 1 )
+text = "Low CPU Mode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResolutionOptions" type="OptionButton" parent="TabContainer/Display"]
+margin_left = 245.969
+margin_top = 73.2599
+margin_right = 390.969
+margin_bottom = 93.2599
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Display"]
+margin_left = 279.702
+margin_top = 24.5685
+margin_right = 355.702
+margin_bottom = 64.5685
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUButton" type="CheckButton" parent="TabContainer/Display"]
+margin_left = 278.443
+margin_top = 115.913
+margin_right = 354.443
+margin_bottom = 155.913
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 545.0
+margin_top = 414.0
+margin_right = 580.0
+margin_bottom = 434.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="TabContainer/Audio/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="item_selected" from="TabContainer/Display/ResolutionOptions" to="." method="_on_ResolutionOptions_item_selected"]
+[connection signal="pressed" from="TabContainer/Display/CheckButton" to="." method="_on_CheckButton_pressed"]
+[connection signal="pressed" from="TabContainer/Display/CPUButton" to="." method="_on_CPUButton_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,0 +1,238 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Textures/UI/Icons/GoldBar.png" type="Texture" id=2]
+[ext_resource path="res://Textures/UI/Equip/EmptyMelee.png" type="Texture" id=3]
+[ext_resource path="res://Textures/UI/Equip/EmptyChest.png" type="Texture" id=4]
+[ext_resource path="res://Textures/UI/Equip/EmptyBoots.png" type="Texture" id=5]
+[ext_resource path="res://Textures/UI/Equip/EmptyHelmet.png" type="Texture" id=6]
+[ext_resource path="res://Audio/SE/soubi-01.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SE/item-01.wav" type="AudioStream" id=8]
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.463257
+margin_right = -0.463257
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 91.0
+margin_top = 109.098
+margin_right = 586.0
+margin_bottom = 430.098
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Consumables" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="TabContainer/Consumables"]
+margin_left = 10.0
+margin_top = 7.0
+margin_right = 479.0
+margin_bottom = 254.0
+max_columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UseButton" type="Button" parent="TabContainer/Consumables"]
+margin_left = 450.56
+margin_top = 266.805
+margin_right = 487.56
+margin_bottom = 286.805
+text = "Use"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Equip" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="TabContainer/Equip"]
+margin_left = 299.0
+margin_top = 6.67645
+margin_right = 479.0
+margin_bottom = 252.676
+allow_reselect = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsLabel" type="Label" parent="TabContainer/Equip"]
+margin_left = 11.289
+margin_top = 7.0
+margin_right = 85.289
+margin_bottom = 21.0
+text = "Player Stats"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="RichTextLabel" parent="TabContainer/Equip"]
+margin_left = 12.0
+margin_top = 38.0
+margin_right = 155.0
+margin_bottom = 229.0
+bbcode_enabled = true
+text = "Health current/Max
+Mana: current/max
+Attack: stat
+Defense: stat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponText" type="Label" parent="TabContainer/Equip"]
+margin_left = 221.074
+margin_top = 101.891
+margin_right = 273.074
+margin_bottom = 115.891
+text = "Weapon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Weapon" type="Sprite" parent="TabContainer/Equip"]
+position = Vector2( 252.1, 136.134 )
+texture = ExtResource( 3 )
+
+[node name="HeadText" type="Label" parent="TabContainer/Equip"]
+margin_left = 150.712
+margin_top = 27.434
+margin_right = 202.712
+margin_bottom = 41.434
+text = "Head"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Head" type="Sprite" parent="TabContainer/Equip"]
+position = Vector2( 189.075, 58.6133 )
+texture = ExtResource( 6 )
+
+[node name="BodyText" type="Label" parent="TabContainer/Equip"]
+margin_left = 156.296
+margin_top = 87.8758
+margin_right = 208.296
+margin_bottom = 101.876
+text = "Body"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="Sprite" parent="TabContainer/Equip"]
+position = Vector2( 189.706, 122.899 )
+texture = ExtResource( 4 )
+
+[node name="BootsText" type="Label" parent="TabContainer/Equip"]
+margin_left = 156.296
+margin_top = 151.612
+margin_right = 208.296
+margin_bottom = 165.612
+text = "Boots"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Boots" type="Sprite" parent="TabContainer/Equip"]
+position = Vector2( 191.563, 184.033 )
+texture = ExtResource( 5 )
+
+[node name="UnequipButton" type="Button" parent="TabContainer/Equip"]
+margin_left = 300.004
+margin_top = 261.164
+margin_right = 366.004
+margin_bottom = 281.164
+text = "Unequip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipButton" type="Button" parent="TabContainer/Equip"]
+margin_left = 432.385
+margin_top = 261.307
+margin_right = 479.385
+margin_bottom = 281.307
+text = "Equip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnequipText" type="RichTextLabel" parent="TabContainer/Equip"]
+visible = false
+margin_left = 128.0
+margin_top = 229.0
+margin_right = 274.0
+margin_bottom = 264.0
+custom_colors/default_color = Color( 1, 0.647059, 0.647059, 1 )
+text = "You must unequip the item in this slot first"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnWeap" type="Button" parent="TabContainer/Equip"]
+margin_left = 244.308
+margin_top = 157.12
+margin_right = 267.308
+margin_bottom = 177.12
+text = "U"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestItems" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Gold" type="Sprite" parent="."]
+position = Vector2( 121.472, 412.49 )
+texture = ExtResource( 2 )
+
+[node name="CurrencyAmount" type="RichTextLabel" parent="."]
+margin_left = 140.876
+margin_top = 407.863
+margin_right = 203.876
+margin_bottom = 422.863
+text = "999,999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Consume" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="Equip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -20.0
+bus = "SFX"
+[connection signal="tab_selected" from="TabContainer" to="." method="_on_TabContainer_tab_selected"]
+[connection signal="item_selected" from="TabContainer/Consumables/ItemList" to="." method="_on_ItemList_item_selected"]
+[connection signal="pressed" from="TabContainer/Consumables/UseButton" to="." method="_on_UseButton_pressed"]
+[connection signal="item_selected" from="TabContainer/Equip/ItemList" to="." method="_on_ItemList__Equipment_selected"]
+[connection signal="pressed" from="TabContainer/Equip/UnequipButton" to="." method="_on_UnequipButton_pressed"]
+[connection signal="pressed" from="TabContainer/Equip/EquipButton" to="." method="_on_EquipButton_pressed"]
+[connection signal="pressed" from="TabContainer/Equip/UnWeap" to="." method="_on_UnWeap_pressed"]
