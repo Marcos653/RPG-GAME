@@ -5,6 +5,12 @@ var speed: int = 150
 var direction: String = "Down"
 var attack: bool = false
 
+onready var AttackPivot = $AttackPivot
+onready var WeaponHitbox = $AttackPivot/WeaponHitbox
+
+func _ready():
+	WeaponHitbox.disabled = true
+
 func _process(delta):
 	attack()
 	move()
@@ -60,20 +66,36 @@ func attack():
 		attack = true
 		if direction == "Left":
 			$Sprite.play("AttackLeft")
+			AttackPivot.rotation_degrees = 90
+			AttackPivot.position = Vector2(0,0)
+			WeaponHitbox.disabled = false
 			yield(get_tree().create_timer(0.3), "timeout")
+			WeaponHitbox.disabled = true
 			attack = false
 			
 		if direction == "Right":
 			$Sprite.play("AttackRight")
+			AttackPivot.rotation_degrees = 270
+			AttackPivot.position = Vector2(0,5)
+			WeaponHitbox.disabled = false
 			yield(get_tree().create_timer(0.3), "timeout")
+			WeaponHitbox.disabled = true
 			attack = false
 			
 		if direction == "Down":
 			$Sprite.play("AttackDown")
+			AttackPivot.rotation_degrees = 0
+			AttackPivot.position = Vector2(0,0)
+			WeaponHitbox.disabled = false
 			yield(get_tree().create_timer(0.3), "timeout")
+			WeaponHitbox.disabled = true
 			attack = false
 			
 		if direction == "Up":
 			$Sprite.play("AttackUp")
+			AttackPivot.rotation_degrees = 180
+			AttackPivot.position = Vector2(0,5)
+			WeaponHitbox.disabled = false
 			yield(get_tree().create_timer(0.3), "timeout")
+			WeaponHitbox.disabled = true
 			attack = false									
